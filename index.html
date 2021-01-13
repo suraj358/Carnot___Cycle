@@ -98,12 +98,12 @@
             var canvas = document.getElementById('simscreen');
             ctx = canvas.getContext('2d');
             ctx.clearRect(0, 0, 800, 500);
-            ctx.beginPath();
-            ctx.lineWidth = "3";
-            ctx.strokeStyle = "black";
-            ctx.arc(a, b, 1, 0, 2 * Math.PI);
-            ctx.stroke();
-            ctx.closePath();
+            // ctx.beginPath();
+            // ctx.lineWidth = "3";
+            // ctx.strokeStyle = "black";
+            // ctx.arc(a, b, 1, 0, 2 * Math.PI);
+            // ctx.stroke();
+            // ctx.closePath();
 
             document.getElementById("p1").innerHTML = "Hot reservoir T<sub>1</sub>(K)=  " + $('#l1spinner').spinner("value") + "";
             document.getElementById("p2").innerHTML = "Cold reservoir T<sub>2</sub>(K) = " + $('#l2spinner').spinner("value") + "";
@@ -115,14 +115,14 @@
         {
             varchange();
             //Variable r1 slider and number input types
-            $('#l1slider').slider("value", 5);
-            $('#l1spinner').spinner("value", 5);
-            $('#l2slider').slider("value", 50);
-            $('#l2spinner').spinner("value", 50);
-            $('#l3slider').slider("value", 150);
-            $('#l3spinner').spinner("value", 150);
-            $('#l4slider').slider("value", 350);
-            $('#l4spinner').spinner("value", 350);
+            $('#l1slider').slider("value", 0);
+            $('#l1spinner').spinner("value", 0);
+            $('#l2slider').slider("value", 0);
+            $('#l2spinner').spinner("value", 0);
+            $('#l3slider').slider("value", 0);
+            $('#l3spinner').spinner("value", 0);
+            $('#l4slider').slider("value", 0);
+            $('#l4spinner').spinner("value", 0);
             $('#l5slider').slider("value", 0);
             $('#l5spinner').spinner("value", 0);
         }
@@ -164,17 +164,17 @@
         function varchange()
         {
             // Variable r1 slider and number input types
-            $('#l1slider').slider({ max : 200, min : 5, step : 1 });		    // slider initialisation : jQuery widget
-            $('#l1spinner').spinner({ max : 200, min : 5, step : 1 });		    // number initialisation : jQuery widget
+            $('#l1slider').slider({ max : 300, min : 50, step : 50 });		    // slider initialisation : jQuery widget
+            $('#l1spinner').spinner({ max : 300, min : 50, step : 50 });		    // number initialisation : jQuery widget
 
             $('#l2slider').slider({ max : 550, min : 300, step : 50 });		    // slider initialisation : jQuery widget
             $('#l2spinner').spinner({ max : 550, min : 300, step : 50 });		    // number initialisation : jQuery widget
 
-            $('#l3slider').slider({ max : 350, min : 30, step : 1});		    // slider initialisation : jQuery widget
-            $('#l3spinner').spinner({max : 350, min : 30, step : 1 });		    // number initialisation : jQuery widget
+            $('#l3slider').slider({ max : 10, min : 5, step : 0.1});		    // slider initialisation : jQuery widget
+            $('#l3spinner').spinner({max : 10, min : 5, step : 0.1 });		    // number initialisation : jQuery widget
 
-            $('#l4slider').slider({ max : 350, min : 200, step : 1 });		    // slider initialisation : jQuery widget
-            $('#l4spinner').spinner({ max : 350, min : 200, step :1 });		    // number initialisation : jQuery widget
+            $('#l4slider').slider({ max : 350, min : 50, step : 50 });		    // slider initialisation : jQuery widget
+            $('#l4spinner').spinner({ max : 350, min : 50, step :50 });		    // number initialisation : jQuery widget
 
             $('#l5slider').slider({ max : 1.6, min : 1.2, step : 0.02 });		    // slider initialisation : jQuery widget
             $('#l5spinner').spinner({ max : 1.6, min : 1.2, step :0.02 });		    // number initialisation : jQuery widget
@@ -220,15 +220,18 @@
         {
             $('#l1slider').slider("value", $('#l1spinner').spinner('value'));
             v1= document.getElementById("l1spinner").value; //updating slider location with change in spinner(debug)
+
             $('#l2slider').slider("value", $('#l2spinner').spinner('value'));  //updating slider location with change in spinner(debug)
             v2= document.getElementById("l2spinner").value; //updating slider location with change in spinner(debug)
-            // $('#l3slider').slider("value", $('#l3spinner').spinner('value'));  //updating slider location with change in spinner(debug)
-            // T1 = document.getElementById("l3spinner").value;
-            // $('#l4slider').slider("value", $('#l4spinner').spinner('value'));  //updating slider location with change in spinner(debug)
-            // T2 = document.getElementById("l4spinner").value;
-            // $('#l5slider').slider("value", $('#l5spinner').spinner('value'));  //updating slider location with change in spinner(debug)
-            // gamma = document.getElementById("l4spinner").value;
-            // $('#l5slider').slider("value", $('#l5spinner').spinner('value'));  //updating slider location with change in spinner(debug)
+
+            $('#l3slider').slider("value", $('#l3spinner').spinner('value'));  //updating slider location with change in spinner(debug)
+            T1 = document.getElementById("l3spinner").value;
+
+            $('#l4slider').slider("value", $('#l4spinner').spinner('value'));  //updating slider location with change in spinner(debug)
+            T2 = document.getElementById("l4spinner").value;
+
+            $('#l5slider').slider("value", $('#l5spinner').spinner('value'));  //updating slider location with change in spinner(debug)
+            gamma = document.getElementById("l5spinner").value;
 
             dummy();
             draw0();
