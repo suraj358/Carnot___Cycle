@@ -92,18 +92,11 @@
             graphline("simscreen1", data, "Volume(m³)", "Pressure(kPa)");
 
         }
-        var a=300;
-        var b=200;
+
         function draw0() {
             var canvas = document.getElementById('simscreen');
             ctx = canvas.getContext('2d');
             ctx.clearRect(0, 0, 800, 500);
-            // ctx.beginPath();
-            // ctx.lineWidth = "3";
-            // ctx.strokeStyle = "black";
-            // ctx.arc(a, b, 1, 0, 2 * Math.PI);
-            // ctx.stroke();
-            // ctx.closePath();
 
             document.getElementById("p1").innerHTML = "Hot reservoir T<sub>1</sub>(K)=  " + $('#l1spinner').spinner("value") + "";
             document.getElementById("p2").innerHTML = "Cold reservoir T<sub>2</sub>(K) = " + $('#l2spinner').spinner("value") + "";
@@ -164,17 +157,17 @@
         function varchange()
         {
             // Variable r1 slider and number input types
-            $('#l1slider').slider({ max : 300, min : 50, step : 50 });		    // slider initialisation : jQuery widget
-            $('#l1spinner').spinner({ max : 300, min : 50, step : 50 });		    // number initialisation : jQuery widget
+            $('#l1slider').slider({ max : 200, min : 50, step : 50});		    // slider initialisation : jQuery widget
+            $('#l1spinner').spinner({ max : 200, min : 50, step : 50 });		    // number initialisation : jQuery widget
 
             $('#l2slider').slider({ max : 550, min : 300, step : 50 });		    // slider initialisation : jQuery widget
             $('#l2spinner').spinner({ max : 550, min : 300, step : 50 });		    // number initialisation : jQuery widget
 
-            $('#l3slider').slider({ max : 10, min : 5, step : 0.1});		    // slider initialisation : jQuery widget
-            $('#l3spinner').spinner({max : 10, min : 5, step : 0.1 });		    // number initialisation : jQuery widget
+            $('#l3slider').slider({ max : 350, min : 30, step : 1});		    // slider initialisation : jQuery widget
+            $('#l3spinner').spinner({max : 350, min : 30, step : 1 });		    // number initialisation : jQuery widget
 
-            $('#l4slider').slider({ max : 350, min : 50, step : 50 });		    // slider initialisation : jQuery widget
-            $('#l4spinner').spinner({ max : 350, min : 50, step :50 });		    // number initialisation : jQuery widget
+            $('#l4slider').slider({ max : 350, min : 200, step : 1 });		    // slider initialisation : jQuery widget
+            $('#l4spinner').spinner({ max : 350, min : 200, step :1 });		    // number initialisation : jQuery widget
 
             $('#l5slider').slider({ max : 1.6, min : 1.2, step : 0.02 });		    // slider initialisation : jQuery widget
             $('#l5spinner').spinner({ max : 1.6, min : 1.2, step :0.02 });		    // number initialisation : jQuery widget
@@ -202,14 +195,14 @@
 
             //Volume v2
 
-            $( "#l4slider" ).on(  "slide",  function( e, ui ) {$('#l4spinner').spinner("value",ui.value);varupdate();draw4();});
-            $( "#l4spinner" ).on( "spin",   function( e, ui ) {$('#l4slider').slider("value",ui.value);varupdate();draw4();});
+            $( "#l4slider" ).on(  "slide",  function( e, ui ) {$('#l4spinner').spinner("value",ui.value);varupdate();});
+            $( "#l4spinner" ).on( "spin",   function( e, ui ) {$('#l4slider').slider("value",ui.value);varupdate();});
             $( "#l4spinner" ).on( "change", function() {varchange() } );
 
             // Heat capacity Ratio r
 
-            $( "#l5slider" ).on(  "slide",  function( e, ui ) {$('#l5spinner').spinner("value",ui.value);});
-            $( "#l5spinner" ).on( "spin",   function( e, ui ) {$('#l5slider').slider("value",ui.value);});
+            $( "#l5slider" ).on(  "slide",  function( e, ui ) {$('#l5spinner').spinner("value",ui.value);varupdate();});
+            $( "#l5spinner" ).on( "spin",   function( e, ui ) {$('#l5slider').slider("value",ui.value);varupdate();});
             $( "#l5spinner" ).on( "change", function() {varchange() } );
             // travel_val($('#l1spinner').spinner("value"));
 
@@ -224,21 +217,18 @@
             $('#l2slider').slider("value", $('#l2spinner').spinner('value'));  //updating slider location with change in spinner(debug)
             v2= document.getElementById("l2spinner").value; //updating slider location with change in spinner(debug)
 
-            $('#l3slider').slider("value", $('#l3spinner').spinner('value'));  //updating slider location with change in spinner(debug)
-            T1 = document.getElementById("l3spinner").value;
-
-            $('#l4slider').slider("value", $('#l4spinner').spinner('value'));  //updating slider location with change in spinner(debug)
-            T2 = document.getElementById("l4spinner").value;
-
-            $('#l5slider').slider("value", $('#l5spinner').spinner('value'));  //updating slider location with change in spinner(debug)
-            gamma = document.getElementById("l5spinner").value;
+            // $('#l3slider').slider("value", $('#l3spinner').spinner('value'));  //updating slider location with change in spinner(debug)
+            // T1 = document.getElementById("l3spinner").value;
+            //
+            // $('#l4slider').slider("value", $('#l4spinner').spinner('value'));  //updating slider location with change in spinner(debug)
+            // T2 = document.getElementById("l4spinner").value;
+            //
+            // $('#l5slider').slider("value", $('#l5spinner').spinner('value'));  //updating slider location with change in spinner(debug)
+            // gamma = document.getElementById("l5spinner").value;
 
             dummy();
             draw0();
         }
-        // function draw1() {
-        //     B = document.getElementById("l1spinner").value;
-        //     document.getElementById("l1slider").value = A;
     </script>
 </head>
 
