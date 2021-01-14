@@ -13,46 +13,49 @@
         var flag  = true;
         var step  = 0;
 
-        let v1 = 30;
+        let v1 = 50;
         let v2 = 60;
         let T1 = 250;
         let T2 = 350;
         let gamma = 1.4;
 
-            function dummy() {
+        function dummy() {
 //ab 1st
-                var datapoints1 = [];
-                var datapoints2 = [];
-                var datapoints3 = [];
-                var datapoints4 = [];
+            var datapoints1 = [];
+            var datapoints2 = [];
+            var datapoints3 = [];
+            var datapoints4 = [];
 //da 4th
 //             for(m=2; m<=Math.pow(T1/T2, 1/(gamma-1))*v1; m++){
-                for (m = Math.pow(T1 / T2, 1 / (gamma - 1)) * v1; m <= v1; m++) {
-                    datapoints4.push({x: m, y: (8.314 * T1 * (Math.pow(v1, (gamma - 1)))) / (Math.pow(m, gamma))});
-                }
-
+            for (m = Math.pow(T1 / T2, 1 / (gamma - 1)) * v1; m <= v1; m++)
+            {
+                datapoints4.push({x: m, y: (8.314 * T1 * (Math.pow(v1, (gamma - 1)))) / (Math.pow(m, gamma))});
+            }
 //bc 2nd
             //for(j = Math.pow(T2/T1, 1/(gamma-1))*v2; j<=v2; j++) {
-            for (j = v2; j <= Math.pow(T2 / T1, 1 / (gamma - 1)) * v2; j++) {
+            for (j = v2; j <= Math.pow(T2 / T1, 1 / (gamma - 1)) * v2; j++)
+            {
                 datapoints2.push({x: j, y: (8.314 * T2 * (Math.pow(v2, (gamma - 1)))) / (Math.pow(j, gamma))});
             }
             // }
             // function c() {
 
 //cd 3rd
-            for (k = Math.pow(T1 / T2, 1 / (gamma - 1)) * v1; k <= v2; k++) {
+            for (k = Math.pow(T1 / T2, 1 / (gamma - 1)) * v1; k <= v2; k++)
+            {
                 datapoints3.push({x: k, y: (8.314 * T2) / k});
             }
 
             // function a() {
 
-            for (i = v1; i <= Math.pow(T2 / T1, 1 / (gamma - 1)) * v2; i++) {
+            for (i = v1; i <= Math.pow(T2 / T1, 1 / (gamma - 1)) * v2; i++)
+            {
                 datapoints1.push({x: i, y: (8.314 * T1) / i});
             }
 
             var data = [];
             data.push({
-                type: "splineArea",
+                type: "spline",
                 xValueType: "Float",
                 showInLegend: true,
                 name: "1st eqn",
@@ -61,7 +64,7 @@
             })
 
             data.push({
-                type: "splineArea",
+                type: "spline",
                 xValueType: "Float",
                 showInLegend: true,
                 name: "2nd eqn",
@@ -154,17 +157,17 @@
         function varchange()
         {
             // Variable r1 slider and number input types
-            $('#l1slider').slider({ max : 300, min : 50, step : 5});		    // slider initialisation : jQuery widget
-            $('#l1spinner').spinner({ max : 300, min : 50, step : 5 });		    // number initialisation : jQuery widget
+            $('#l1slider').slider({ max : 200, min : 50, step : 5});		    // slider initialisation : jQuery widget
+            $('#l1spinner').spinner({ max : 200, min : 50, step : 5 });		    // number initialisation : jQuery widget
 
-            $('#l2slider').slider({ max : 650, min : 300, step : 5 });		    // slider initialisation : jQuery widget
-            $('#l2spinner').spinner({ max : 650, min : 300, step : 5 });		    // number initialisation : jQuery widget
+            $('#l2slider').slider({ max : 550, min : 300, step : 5 });		    // slider initialisation : jQuery widget
+            $('#l2spinner').spinner({ max : 550 , min : 300, step : 5 });		    // number initialisation : jQuery widget
 
-            $('#l3slider').slider({ max : 300, min : 30, step : 10});		    // slider initialisation : jQuery widget
-            $('#l3spinner').spinner({max : 300, min : 30, step : 10 });		    // number initialisation : jQuery widget
+            $('#l3slider').slider({ max : 10, min : 5, step : 0.1});		    // slider initialisation : jQuery widget
+            $('#l3spinner').spinner({max : 10, min : 5, step : 0.1 });		    // number initialisation : jQuery widget
 
-            $('#l4slider').slider({ max : 350, min : 200, step : 1 });		    // slider initialisation : jQuery widget
-            $('#l4spinner').spinner({ max : 350, min : 200, step :1 });		    // number initialisation : jQuery widget
+            $('#l4slider').slider({ max : 5, min : 2, step : 0.1 });		    // slider initialisation : jQuery widget
+            $('#l4spinner').spinner({ max : 5, min : 2, step :0.1 });		    // number initialisation : jQuery widget
 
             $('#l5slider').slider({ max : 1.4, min : 1.2, step : 0.02 });		    // slider initialisation : jQuery widget
             $('#l5spinner').spinner({ max : 1.4, min : 1.2, step :0.02 });		    // number initialisation : jQuery widget
@@ -198,8 +201,8 @@
 
             // Heat capacity Ratio r
 
-            $( "#l5slider" ).on(  "slide",  function( e, ui ) {$('#l5spinner').spinner("value",ui.value);varupdate();dummy();});
-            $( "#l5spinner" ).on( "spin",   function( e, ui ) {$('#l5slider').slider("value",ui.value);varupdate();dummy();});
+            $( "#l5slider" ).on(  "slide",  function( e, ui ) {$('#l5spinner').spinner("value",ui.value);varupdate();});
+            $( "#l5spinner" ).on( "spin",   function( e, ui ) {$('#l5slider').slider("value",ui.value);varupdate();});
             $( "#l5spinner" ).on( "change", function() {varchange() } );
             // travel_val($('#l1spinner').spinner("value"));
 
@@ -221,7 +224,7 @@
             v2 = document.getElementById("l4spinner").value;
 
             $('#l5slider').slider("value", $('#l5spinner').spinner('value'));  //updating slider location with change in spinner(debug)
-            m   = document.getElementById("l5spinner").value;
+            gamma  = document.getElementById("l5spinner").value;
 
             dummy();
             draw0();
